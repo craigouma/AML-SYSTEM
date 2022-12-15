@@ -1,0 +1,39 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include "blockchain.h"
+
+int main() {
+  // Initialize the blockchain
+  Blockchain blockchain;
+
+  std::string sender;
+  std::string receiver;
+  double amount;
+
+  while (true) {
+    std::cout << "Enter sender: ";
+    std::cin >> sender;
+
+    std::cout << "Enter receiver: ";
+    std::cin >> receiver;
+
+    std::cout << "Enter amount: ";
+    std::cin >> amount;
+
+    // Create a new transaction
+    Transaction transaction(sender, receiver, amount);
+
+    // Check if the transaction is valid
+    if (is_valid_transaction(transaction)) {
+      // Add the transaction to the blockchain
+      blockchain.add_transaction(transaction);
+
+      std::cout << "Transaction added to the blockchain." << std::endl;
+    } else {
+      std::cout << "Transaction declined. Suspicious activity detected." << std::endl;
+    }
+  }
+
+  return 0;
+}
